@@ -1,0 +1,45 @@
+PODS:
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - JGProgressHUD (2.0.3)
+  - LightRoute (2.1.18)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - SwiftyJSON (4.1.0)
+  - Swinject (2.4.1)
+
+DEPENDENCIES:
+  - Alamofire (= 4.5.1)
+  - AlamofireImage (= 3.3.0)
+  - JGProgressHUD (= 2.0.3)
+  - LightRoute (= 2.1.18)
+  - R.swift (= 4.0.0)
+  - SwiftyJSON (= 4.1.0)
+  - Swinject (= 2.4.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireImage
+    - JGProgressHUD
+    - LightRoute
+    - R.swift
+    - R.swift.Library
+    - SwiftyJSON
+    - Swinject
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  LightRoute: 85b8e17345a7b22d7067608b8ea07b37f7a80249
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Swinject: f7f15a9672e99328c1f07f277091087917215700
+
+PODFILE CHECKSUM: c39f21d1b7d88f5b071cc4bd961ec596950cd637
+
+COCOAPODS: 1.5.0

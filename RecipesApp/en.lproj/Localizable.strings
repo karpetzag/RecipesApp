@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  RecipesApp
+
+  Created by Andrey Karpets on 09/09/2018.
+  Copyright © 2018 DemoApp. All rights reserved.
+*/
+
+"details.favorites.remove" = "Remove from Favorites";
+"details.favorites.add" = "Add to Favorites";
+"details.title" = "Details";
+"details.error" = "Failed to load recipe";
+"details.ingredients" = "Ingredients:";
+"categories.title" = "Categories";
+"categories.error" = "Failed to load categories";
+"recipesList.error" = "Failed to load recipes";
+"recipesList.title" = "Recipes";
+"common.ok" = "OK";
+"common.error" = "Error";
+"common.cancel" = "Cancel";
+"common.loading" = "Loading...";
