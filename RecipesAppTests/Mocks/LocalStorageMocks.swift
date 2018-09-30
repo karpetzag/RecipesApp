@@ -9,43 +9,54 @@
 import Foundation
 @testable import RecipesApp
 
-class CategoryLocalStorageMock : CategoryLocalStorage {
+class CategoryLocalStorageMock: CategoryLocalStorage {
     
     var categoriesToReturn = [RecipesApp.Category]()
     var updatedCategories = [RecipesApp.Category]()
-
-    var updateDidCall = false
-    var loadDidCall = false
+    var isLoadCalled = false
+    var isUpdateCalled = false
     
     func load() -> [RecipesApp.Category]? {
-        loadDidCall = true
+        isLoadCalled = true
         return categoriesToReturn
     }
     
     func update(withCategories categories: [RecipesApp.Category]) {
-        updateDidCall = true
+        isUpdateCalled = true
         updatedCategories = categories
     }
 }
 
 class MockRecipesLocalStorage: RecipesLocalStorage {
-    var recipesToReturn = [RecipePreview]()
-    var updatedRecipes: [RecipePreview]!
     
+    var isUpdateRecipesCalled = false
+    var isLoadRecipesCalled = false
+    var isUpdateRecipeCalled = false
+    var isLoadRecipeCalled = false
+    
+    var recipeToReturn: Recipe?
+    var recipesToReturn = [RecipePreview]()
+    var updatedRecipes = [RecipePreview]()
+    var updatedRecipe: Recipe?
+
     func update(recipes: [RecipePreview], categoryId: String) {
         self.updatedRecipes = recipes
+        isUpdateRecipesCalled = true
     }
     
     func load(categoryId: String) -> [RecipePreview]? {
+        isLoadRecipesCalled = true
         return recipesToReturn
     }
     
     func update(recipe: Recipe) {
-        
+        updatedRecipe = recipe
+        isUpdateRecipeCalled = true
     }
     
     func load(recipeId: String) -> Recipe? {
-        return nil
+        isUpdateRecipeCalled = true
+        return recipeToReturn
     }
     
 }

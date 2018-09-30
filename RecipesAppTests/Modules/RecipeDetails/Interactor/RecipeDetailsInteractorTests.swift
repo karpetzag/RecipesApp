@@ -7,20 +7,72 @@
 //
 
 import XCTest
+@testable import RecipesApp
 
 class RecipeDetailsInteractorTests: XCTestCase {
 
+    private var interactor: RecipeDetailsInteractor!
+    private var mockPresenter: MockPresenter!
+    private var mockFavoriteService: MockFavoriteRecipesService!
+    private var mockRecipesService: RecipesServiceMock!
+    private var mockRecipesLocalStorage: MockRecipesLocalStorage!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        mockRecipesLocalStorage = MockRecipesLocalStorage()
+        mockFavoriteService = MockFavoriteRecipesService()
+        mockRecipesService = RecipesServiceMock()
+        
+        mockPresenter = MockPresenter()
+        interactor = RecipeDetailsInteractor(recipeService: mockRecipesService,
+                                             favoriteRecipesService: mockFavoriteService,
+                                             cache: mockRecipesLocalStorage)
+        interactor.output = mockPresenter
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testWhenRecipeIsAddedToFavotitesShouldUseFavoriteService()  {
+        let recipe = Recipe.testRecipe()
+        interactor.addToFavorites(recipe: recipe)
+        XCTAssertTrue(mockFavoriteService.isAddedToFavoritesCalled)
+    }
+    
+    func testWhenRecipeIsRemovedFromFavotitesShouldUseFavoriteService()  {
+        let recipe = Recipe.testRecipe()
+        interactor.removeFromFavorites(recipe: recipe)
+        XCTAssertTrue(mockFavoriteService.isRemovedFromFavoritesCalled)
+    }
+    
+    func testWhenLoadIsFailedShouldUseCachedData() {
+        let recipe = Recipe.testRecipe()
+        mockRecipesService.recipeResult = .failure(ApiInternalError.unknown)
+        mockRecipesLocalStorage.recipeToReturn = recipe
+        
+        interactor.loadRecipe(withId: "")
+        XCTAssertEqual(mockPresenter.result!.cachedContent!, recipe)
+    }
+    
+    func testWhenLoadIsSucceededShouldUseDataFromService() {
+        let recipe = Recipe.testRecipe()
+        mockRecipesService.recipeResult = .success(recipe)
+
+        interactor.loadRecipe(withId: "")
+        XCTAssertEqual(mockPresenter.result!.resultItem!, recipe)
     }
 
+    func testWhenLoadIsSucceededShouldUpdateDataInCache() {
+        let recipe = Recipe.testRecipe()
+        mockRecipesService.recipeResult = .success(recipe)
+        
+        interactor.loadRecipe(withId: "")
+        XCTAssertEqual(mockRecipesLocalStorage.updatedRecipe, recipe)
+    }
+    
     class MockPresenter: RecipeDetailsInteractorOutput {
-
+        var result: InteractorFetchResult<Recipe>?
+        
+        func didFinishLoadRecipe(result: InteractorFetchResult<Recipe>, isAddedToFavorites: Bool) {
+            self.result = result
+        }
     }
 }

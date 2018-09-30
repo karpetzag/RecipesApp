@@ -13,25 +13,55 @@ import SwiftyJSON
 
 class RecipeServiceTests: XCTestCase {
     
+    private var mapperMock: MockResponseMapper!
     private var apiClientMock: ApiClientMock!
+    
     private var service: DefaultRecipesService!
-    private var mapper: DefaultResponseMapper!
     
     override func setUp() {
         super.setUp()
-        mapper = DefaultResponseMapper()
+        mapperMock = MockResponseMapper()
         apiClientMock = ApiClientMock()
         
-        service = DefaultRecipesService(apiClient: apiClientMock, mapper: mapper)
-        
+        service = DefaultRecipesService(apiClient: apiClientMock, mapper: mapperMock)
     }
     
-    private func categoriesString() -> JSON {
-        let json = Bundle.main.path(forResource: "TestCategories", ofType: "json")!
-        let data = try! String(contentsOfFile: json)
-        let result = JSON(data)
-        return result
+    func testWhenGetCategoriesResponseShouldUseMapperToParseData() {
+        apiClientMock.result = TestApiResultsProvider.testSuccessCategoriesApiResult()
         
+        service.loadCategories { (result) in  }
+        XCTAssertEqual(self.mapperMock.dataKey, "categories")
+        XCTAssertTrue( self.mapperMock.type! == RecipesApp.Category.self)
     }
-  
+    
+    func testWhenGetPreviewsResponseShouldUseMapperToParseData() {
+        apiClientMock.result = TestApiResultsProvider.testSuccessPreviewsApiResult()
+        
+        service.loadRecipePreviews(forCategory: RecipesApp.Category.testCategory(), completion: { _ in})
+        XCTAssertEqual(self.mapperMock.dataKey, "meals")
+        XCTAssertTrue( self.mapperMock.type! == RecipePreview.self)
+    }
+    
+    func testWhenGetRecipeResponseShouldUseMapperToParseData() {
+        apiClientMock.result = TestApiResultsProvider.testSuccessRecipeApiResult()
+
+        service.loadRecipe(withId: "") { _ in }
+        XCTAssertEqual(self.mapperMock.dataKey, "meals")
+        XCTAssertTrue( self.mapperMock.type! == Recipe.self)
+    }
+    
+    func testWhenLoadCategoriesShouldUseApiClient() {
+        service.loadCategories { _ in  }
+        XCTAssertEqual(apiClientMock.sentRequest?.methodName, "categories.php")
+    }
+    
+    func testWhenLoadPreviewsShouldUseApiClient() {
+        service.loadRecipePreviews(forCategory: RecipesApp.Category.testCategory(), completion: { _ in})
+        XCTAssertEqual(apiClientMock.sentRequest?.methodName, "filter.php")
+    }
+    
+    func testWhenLoadRecipeShouldUseApiClient() {
+        service.loadRecipe(withId: "", completion: { _ in })
+        XCTAssertEqual(apiClientMock.sentRequest?.methodName, "lookup.php")
+    }
 }

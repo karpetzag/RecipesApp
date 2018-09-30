@@ -22,7 +22,7 @@ class RecipesListInteractor: RecipesListInteractorInput {
     }
     
     func loadAllRecipes(category: Category) {
-        recipeService.loadRecipePreivews(forCategory: category) { [weak self] (result) in
+        recipeService.loadRecipePreviews(forCategory: category) { [weak self] (result) in
             guard let `self` = self else {
                 return
             }

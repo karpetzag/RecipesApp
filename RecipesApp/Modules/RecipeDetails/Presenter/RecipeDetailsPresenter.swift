@@ -31,7 +31,7 @@ class RecipeDetailsPresenter: RecipeDetailsModuleInput, RecipeDetailsViewOutput,
         interactor.loadRecipe(withId: recipeId)
     }
     
-    func didFinishLoadAllRecipes(result: InteractorFetchResult<Recipe>, isAddedToFavorites: Bool) {
+    func didFinishLoadRecipe(result: InteractorFetchResult<Recipe>, isAddedToFavorites: Bool) {
         view.hideLoading()
         loadedRecipe = result.resultItem
         

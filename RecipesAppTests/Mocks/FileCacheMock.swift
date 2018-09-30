@@ -10,16 +10,20 @@ import Foundation
 @testable import RecipesApp
 
 class FileCacheMock: FileCache {
-
+    
     var isAddContentCalled = false
     var isRemoveCalled = false
+    var isLoadContentCalled = false
+    var contentToReturn: Data?
+    var isFileExist = false
+    var pathToReturn: URL!
     
     func isFileExist(name: String) -> Bool {
-        return false
+        return isFileExist
     }
     
     func pathForFile(withName name: String) -> URL {
-        fatalError()
+        return pathToReturn
     }
     
     func remove(name: String) {
@@ -30,8 +34,12 @@ class FileCacheMock: FileCache {
         isAddContentCalled = true
     }
     
-    func contentsOfDirectory(name: String) -> [String] {
+    func filenamesInDirectory(name: String) -> [String] {
         return []
     }
 
+    func content(filename: String, subdirectoryName: String?) -> Data? {
+        isLoadContentCalled = true
+        return contentToReturn
+    }
 }

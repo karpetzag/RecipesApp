@@ -28,16 +28,20 @@ class CategoriesListPresenterTest: XCTestCase {
         presenter.router = mockRouter
     }
 
-    func testOnViewRefreshLoadsCategories() {
+    func testOnViewRefreshShouldLoadCategories() {
         presenter.onViewRefesh()
         XCTAssertTrue(mockInteractor.loadIsCalled)
     }
     
-    func testShowsRecipesListWhenUserSelectsCategory() {
+    func testWhenViewIsReadyShouldStartLoadData() {
+        presenter.viewIsReady()
+        XCTAssertTrue(mockInteractor.loadIsCalled)
+    }
+    
+    func testWhenUserSelectsCategoryShouldShowRecipesList() {
         let categories = RecipesApp.Category.testCategories(count: 10)
         let result = InteractorFetchResult(requestResult: .success(categories), cachedContent: nil)
         presenter.didLoadCategories(result: result)
-        XCTAssertNil(mockRouter.category)
 
         let index = 0
         presenter.didSelectCategory(atIndex: index)
@@ -46,25 +50,23 @@ class CategoriesListPresenterTest: XCTestCase {
         XCTAssertEqual(mockRouter.category, categories[index])
     }
     
-    func testAfterSuccessUpdateShowViewModels() {
+    func testWhenDataIsReloadedShouldShowViewModels() {
         let categories = RecipesApp.Category.testCategories(count: 10)
         let result = InteractorFetchResult(requestResult: .success(categories), cachedContent: nil)
         
-        XCTAssertTrue(mockView.categories.isEmpty)
-
         presenter.didLoadCategories(result: result)
         
         XCTAssertEqual(mockView.categories.count, categories.count)
     }
     
-    func testShowsNoErrorMessagesAfterSuccessUpdate() {
+    func testWhenDataIsReloadedShouldNotShowErrorMessages() {
         let categories = RecipesApp.Category.testCategories(count: 10)
         let result = InteractorFetchResult(requestResult: .success(categories), cachedContent: nil)
         presenter.didLoadCategories(result: result)
         XCTAssertFalse(mockView.showErrorMessageIsCalled)
     }
     
-    func testShowsErrorMessagesAfterFailedUpdate() {
+    func testWhenUpdateIsFailedShouldShowErrorMessage() {
         let result = InteractorFetchResult<[RecipesApp.Category]>(requestResult: .failure(ApiInternalError.unknown), cachedContent: nil)
         presenter.didLoadCategories(result: result)
         XCTAssertTrue(mockView.showErrorMessageIsCalled)

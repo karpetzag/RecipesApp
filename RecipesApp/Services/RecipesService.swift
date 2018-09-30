@@ -12,7 +12,7 @@ protocol RecipesService {
     
     func loadCategories(withCompletion completion: @escaping (DataResult<[Category]>)->())
     
-    func loadRecipePreivews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->())
+    func loadRecipePreviews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->())
     
     func loadRecipe(withId id: String, completion: @escaping (DataResult<Recipe>)->())
 }
@@ -36,7 +36,7 @@ class DefaultRecipesService: RecipesService {
         }
     }
     
-    func loadRecipePreivews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->()) {
+    func loadRecipePreviews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->()) {
         let params = ["c": category.title]
         let request = ApiRequest(httpMethod: .get, methodName: "filter.php", params: params)
         apiClient.send(request: request) { [weak self] (result) in

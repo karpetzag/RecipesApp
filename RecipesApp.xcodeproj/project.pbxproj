@@ -35,7 +35,16 @@
 		9A018853402BB66ACAB46A8B /* RecipeDetailsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7542B5E74971C3E4B7F25306 /* RecipeDetailsInteractorInput.swift */; };
 		9F4BFCC9215607F000280B8D /* RecipeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4BFCC8215607F000280B8D /* RecipeServiceTests.swift */; };
 		9F4BFCCB2156086000280B8D /* ApiClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4BFCCA2156086000280B8D /* ApiClientMock.swift */; };
-		9F4BFCCD215644BF00280B8D /* TestCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F4BFCCC215644BF00280B8D /* TestCategories.json */; };
+		9F4CA4AA215F8250001D1E15 /* TestCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CA4A7215F8250001D1E15 /* TestCategories.json */; };
+		9F4CA4AB215F8250001D1E15 /* TestRecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CA4A8215F8250001D1E15 /* TestRecipe.json */; };
+		9F4CA4AC215F8250001D1E15 /* TestPreviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CA4A9215F8250001D1E15 /* TestPreviews.json */; };
+		9F4CA4AE215F925F001D1E15 /* CategoryLocalStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CA4AD215F925F001D1E15 /* CategoryLocalStorageTests.swift */; };
+		9F4CA4B0215F9B84001D1E15 /* RecipesLocalStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CA4AF215F9B84001D1E15 /* RecipesLocalStorageTests.swift */; };
+		9F4CA4B1215F9E76001D1E15 /* RecipeDetailsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60656B66266050F0DC8C9235 /* RecipeDetailsInteractorTests.swift */; };
+		9F4CA4B2215F9E79001D1E15 /* RecipeDetailsRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A12E2617F75187F1ED08DF /* RecipeDetailsRouterTests.swift */; };
+		9F4CA4B3215F9E7D001D1E15 /* RecipeDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D7EFF9B3827139E61669E /* RecipeDetailsPresenterTests.swift */; };
+		9F4CA4B4215F9E82001D1E15 /* RecipeDetailsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E433BC703AB2B5062D54D8 /* RecipeDetailsViewTests.swift */; };
+		9F4CA4B5215F9E85001D1E15 /* RecipeDetailsConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F75C5DCC6108E2EE35F47BF /* RecipeDetailsConfiguratorTests.swift */; };
 		9F4CDBB82147FABF003088D9 /* RecipeServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CDBB72147FABF003088D9 /* RecipeServiceMock.swift */; };
 		9F4CDBBA2147FC9F003088D9 /* LocalStorageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CDBB92147FC9F003088D9 /* LocalStorageMocks.swift */; };
 		9F4CDBBC21480825003088D9 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CDBBB21480825003088D9 /* TestModels.swift */; };
@@ -47,6 +56,7 @@
 		9F4F0EAF21578A59002D110E /* ResponseMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F0EAE21578A59002D110E /* ResponseMapperTests.swift */; };
 		9F4F0EB12157D711002D110E /* NavigatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F0EB02157D711002D110E /* NavigatorMock.swift */; };
 		9F4F0EB32157D984002D110E /* FavoriteRecipesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F0EB22157D984002D110E /* FavoriteRecipesServiceMock.swift */; };
+		9F504CC521593A3900E72F6E /* ResponseMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504CC421593A3900E72F6E /* ResponseMapperMock.swift */; };
 		9F5A8613214699060052EE30 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A8612214699060052EE30 /* Category.swift */; };
 		9F5A8615214699340052EE30 /* RecipePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A8614214699340052EE30 /* RecipePreview.swift */; };
 		9F5A86182146C4170052EE30 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A86162146C4170052EE30 /* CategoryCollectionViewCell.swift */; };
@@ -149,7 +159,11 @@
 		9A9EBAABF098D558A11DF4F1 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		9F4BFCC8215607F000280B8D /* RecipeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTests.swift; sourceTree = "<group>"; };
 		9F4BFCCA2156086000280B8D /* ApiClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientMock.swift; sourceTree = "<group>"; };
-		9F4BFCCC215644BF00280B8D /* TestCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestCategories.json; sourceTree = "<group>"; };
+		9F4CA4A7215F8250001D1E15 /* TestCategories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestCategories.json; sourceTree = "<group>"; };
+		9F4CA4A8215F8250001D1E15 /* TestRecipe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestRecipe.json; sourceTree = "<group>"; };
+		9F4CA4A9215F8250001D1E15 /* TestPreviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestPreviews.json; sourceTree = "<group>"; };
+		9F4CA4AD215F925F001D1E15 /* CategoryLocalStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryLocalStorageTests.swift; sourceTree = "<group>"; };
+		9F4CA4AF215F9B84001D1E15 /* RecipesLocalStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesLocalStorageTests.swift; sourceTree = "<group>"; };
 		9F4CDBB72147FABF003088D9 /* RecipeServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceMock.swift; sourceTree = "<group>"; };
 		9F4CDBB92147FC9F003088D9 /* LocalStorageMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageMocks.swift; sourceTree = "<group>"; };
 		9F4CDBBB21480825003088D9 /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
@@ -157,6 +171,7 @@
 		9F4F0EAE21578A59002D110E /* ResponseMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMapperTests.swift; sourceTree = "<group>"; };
 		9F4F0EB02157D711002D110E /* NavigatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorMock.swift; sourceTree = "<group>"; };
 		9F4F0EB22157D984002D110E /* FavoriteRecipesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesServiceMock.swift; sourceTree = "<group>"; };
+		9F504CC421593A3900E72F6E /* ResponseMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMapperMock.swift; sourceTree = "<group>"; };
 		9F5A8612214699060052EE30 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9F5A8614214699340052EE30 /* RecipePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePreview.swift; sourceTree = "<group>"; };
 		9F5A86162146C4170052EE30 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -520,8 +535,20 @@
 				9F6B74CA214CF83400F4924D /* FavoriteRecipesServiceTests.swift */,
 				9F4BFCC8215607F000280B8D /* RecipeServiceTests.swift */,
 				9F4F0EAE21578A59002D110E /* ResponseMapperTests.swift */,
+				9F4CA4AD215F925F001D1E15 /* CategoryLocalStorageTests.swift */,
+				9F4CA4AF215F9B84001D1E15 /* RecipesLocalStorageTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9F4CA4A6215F8250001D1E15 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CA4A7215F8250001D1E15 /* TestCategories.json */,
+				9F4CA4A8215F8250001D1E15 /* TestRecipe.json */,
+				9F4CA4A9215F8250001D1E15 /* TestPreviews.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		9F4CDBB62147F914003088D9 /* Mocks */ = {
@@ -535,6 +562,7 @@
 				9F4BFCCA2156086000280B8D /* ApiClientMock.swift */,
 				9F4F0EB02157D711002D110E /* NavigatorMock.swift */,
 				9F4F0EB22157D984002D110E /* FavoriteRecipesServiceMock.swift */,
+				9F504CC421593A3900E72F6E /* ResponseMapperMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -611,11 +639,11 @@
 		9FFA06EC21402B040079826E /* RecipesAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				9F4CA4A6215F8250001D1E15 /* Resources */,
 				6B3B501C2EF37236056EAC53 /* Modules */,
 				9F4BFCC52155FAE100280B8D /* Services */,
 				9F4CDBB62147F914003088D9 /* Mocks */,
 				9FFA06EF21402B040079826E /* Info.plist */,
-				9F4BFCCC215644BF00280B8D /* TestCategories.json */,
 			);
 			path = RecipesAppTests;
 			sourceTree = "<group>";
@@ -833,7 +861,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F4BFCCD215644BF00280B8D /* TestCategories.json in Resources */,
+				9F4CA4AA215F8250001D1E15 /* TestCategories.json in Resources */,
+				9F4CA4AC215F8250001D1E15 /* TestPreviews.json in Resources */,
+				9F4CA4AB215F8250001D1E15 /* TestRecipe.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,6 +1041,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4F0EB32157D984002D110E /* FavoriteRecipesServiceMock.swift in Sources */,
+				9F4CA4B1215F9E76001D1E15 /* RecipeDetailsInteractorTests.swift in Sources */,
+				9F504CC521593A3900E72F6E /* ResponseMapperMock.swift in Sources */,
+				9F4CA4B5215F9E85001D1E15 /* RecipeDetailsConfiguratorTests.swift in Sources */,
 				9F4F0EAD21577942002D110E /* RecipesListPresenterTests.swift in Sources */,
 				9F6B74C7214CC92300F4924D /* FileCacheMock.swift in Sources */,
 				9F4F0EAA21577936002D110E /* RecipesListConfiguratorTests.swift in Sources */,
@@ -1020,17 +1053,22 @@
 				F0E4F592195F5A04977B9B4E /* CategoriesListConfiguratorTests.swift in Sources */,
 				9F4F0EB12157D711002D110E /* NavigatorMock.swift in Sources */,
 				395C712CB8277FF3647B7BCF /* CategoriesListViewTests.swift in Sources */,
+				9F4CA4B3215F9E7D001D1E15 /* RecipeDetailsPresenterTests.swift in Sources */,
 				9F6B74CB214CF83400F4924D /* FavoriteRecipesServiceTests.swift in Sources */,
 				9F4BFCC9215607F000280B8D /* RecipeServiceTests.swift in Sources */,
 				8C624087DF2E1E6E07FA9A1F /* CategoriesListInteractorTests.swift in Sources */,
 				9F4CDBB82147FABF003088D9 /* RecipeServiceMock.swift in Sources */,
+				9F4CA4B0215F9B84001D1E15 /* RecipesLocalStorageTests.swift in Sources */,
 				9F4F0EAF21578A59002D110E /* ResponseMapperTests.swift in Sources */,
+				9F4CA4AE215F925F001D1E15 /* CategoryLocalStorageTests.swift in Sources */,
 				C6D8C57CE0D2BE697A0A4916 /* CategoriesListPresenterTests.swift in Sources */,
 				9F4F0EAB2157793A002D110E /* RecipesListViewTests.swift in Sources */,
 				9F4CDBBC21480825003088D9 /* TestModels.swift in Sources */,
+				9F4CA4B4215F9E82001D1E15 /* RecipeDetailsViewTests.swift in Sources */,
 				7EDEE250B1E606022BAD5482 /* CategoriesListRouterTests.swift in Sources */,
 				9F4BFCCB2156086000280B8D /* ApiClientMock.swift in Sources */,
 				9F4CDBBA2147FC9F003088D9 /* LocalStorageMocks.swift in Sources */,
+				9F4CA4B2215F9E79001D1E15 /* RecipeDetailsRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

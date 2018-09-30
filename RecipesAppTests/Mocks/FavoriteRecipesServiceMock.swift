@@ -10,16 +10,17 @@ import Foundation
 @testable import RecipesApp
 
 class MockFavoriteRecipesService: FavoriteRecipesService {
+    var isRemovedFromFavoritesCalled = false
     var isAddedToFavoritesCalled = false
     var isAddedToFavorites = false
     var addedObserver: FavoriteStatusObserver?
     
     func add(recipe: Recipe) {
-        
+        isAddedToFavoritesCalled = true
     }
     
     func remove(recipe: Recipe) {
-        
+        isRemovedFromFavoritesCalled = true
     }
     
     func isAddedToFavorite(recipeId: String) -> Bool {

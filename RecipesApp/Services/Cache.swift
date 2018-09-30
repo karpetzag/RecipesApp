@@ -44,8 +44,7 @@ class DefaultCategoryLocalStorage: CategoryLocalStorage {
     }
     
     func load() -> [Category]? {
-        let url = fileCache.pathForFile(withName: DefaultCategoryLocalStorage.filename)
-        guard let json = try? Data(contentsOf: url) else {
+        guard let json = fileCache.content(filename: DefaultCategoryLocalStorage.filename, subdirectoryName: nil) else {
             return nil
         }
         
@@ -57,8 +56,8 @@ class DefaultRecipesLocalStorage: RecipesLocalStorage {
    
     private let fileCache: FileCache
     
-    private static let recepiesFilename = "recepies"
-    private static let singleRecepieFilename = "recepie"
+    private static let recipiesFilename = "recipes"
+    private static let singleRecipeFilename = "recipe"
     
     init(fileCache: FileCache) {
         self.fileCache = fileCache
@@ -69,15 +68,13 @@ class DefaultRecipesLocalStorage: RecipesLocalStorage {
             return
         }
 
-        fileCache.add(content: json, filename: DefaultRecipesLocalStorage.recepiesFilename + categoryId, subdirectoryName: nil)
+        fileCache.add(content: json, filename: DefaultRecipesLocalStorage.recipiesFilename + categoryId, subdirectoryName: nil)
     }
     
     func load(categoryId: String) -> [RecipePreview]? {
-        let url = fileCache.pathForFile(withName: DefaultRecipesLocalStorage.recepiesFilename + categoryId)
-        guard let json = try? Data(contentsOf: url) else {
+        guard let json = fileCache.content(filename: DefaultRecipesLocalStorage.recipiesFilename + categoryId, subdirectoryName: nil) else {
             return nil
         }
-        
         return try? JSONDecoder().decode([RecipePreview].self, from: json)
     }
     
@@ -87,13 +84,12 @@ class DefaultRecipesLocalStorage: RecipesLocalStorage {
         }
     
         fileCache.add(content: json,
-                      filename: DefaultRecipesLocalStorage.singleRecepieFilename + recipe.id,
+                      filename: DefaultRecipesLocalStorage.singleRecipeFilename + recipe.id,
                       subdirectoryName: nil)
     }
     
     func load(recipeId: String) -> Recipe? {
-        let url = fileCache.pathForFile(withName: DefaultRecipesLocalStorage.singleRecepieFilename + recipeId)
-        guard let json = try? Data(contentsOf: url) else {
+        guard let json = fileCache.content(filename: DefaultRecipesLocalStorage.singleRecipeFilename + recipeId, subdirectoryName: nil) else {
             return nil
         }
         

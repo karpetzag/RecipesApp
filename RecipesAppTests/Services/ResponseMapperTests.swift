@@ -20,8 +20,8 @@ class ResponseMapperTests: XCTestCase {
         mapper = DefaultResponseMapper()
     }
     
-    func testReturnSuccesResultForValidApiResult() {
-        let result = ApiResult.success(ApiSuccessResponse(originData: Data(), json: categoriesJSON()))
+    func testWhenResultIsValidShouldReturnSuccesResult() {
+        let result = TestApiResultsProvider.testSuccessCategoriesApiResult()
         
         let e = XCTestExpectation(description: "Response parsing")
         
@@ -35,7 +35,7 @@ class ResponseMapperTests: XCTestCase {
         wait(for: [e], timeout: 0.5)
     }
   
-    func testReturnFailureResultForErrorApiResult() {
+    func testWhenResultIsInvalidShouldReturnFailureResult() {
         let result = ApiResult.failure(ApiInternalError.unknown)
         
         let e = XCTestExpectation(description: "Response parsing")
@@ -50,9 +50,8 @@ class ResponseMapperTests: XCTestCase {
         wait(for: [e], timeout: 0.5)
     }
     
-    func testReturnFailureResultIfNoContentByDataKey() {
-        let result = ApiResult.success(ApiSuccessResponse(originData: Data(), json: categoriesJSON()))
-
+    func testWhenNoDataInDataKeyShouldReturnFailureResult() {
+        let result = TestApiResultsProvider.testSuccessCategoriesApiResult()
         let e = XCTestExpectation(description: "Response parsing")
         
         let invalidKey = "invalidKey"
@@ -67,11 +66,4 @@ class ResponseMapperTests: XCTestCase {
         wait(for: [e], timeout: 0.5)
     }
     
-    private func categoriesJSON() -> JsonReponse {
-        let bundle = Bundle(for: type(of: self))
-        let json = bundle.path(forResource: "TestCategories", ofType: "json")!
-        let data = try! String(contentsOfFile: json)
-        let result = JSON(parseJSON: data)
-        return result
-    }
 }

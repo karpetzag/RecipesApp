@@ -23,40 +23,32 @@ class FavoriteRecipesServiceTests: XCTestCase {
         service.add(observer: observerMock)
     }
     
-    func testWhenFavoriteRecipeIsAddedObserversGetNotified() {
+    func testWhenFavoriteRecipeIsAddedObserversShouldBeNotified() {
         let recipe = Recipe(preview: RecipePreview(id: "1", title: "", imageURL: nil), instructions: "", ingredients: [])
         
-        XCTAssertNil(observerMock.addedRecipe)
-        
         service.add(recipe: recipe)
-        
         XCTAssertNotNil(observerMock.addedRecipe)
     }
     
-    func testWhenFavoriteRecipeIsRemovedObserversGetNotified() {
+    func testWhenFavoriteRecipeIsRemovedObserversShouldBeNotified() {
         let recipe = Recipe(preview: RecipePreview(id: "1", title: "", imageURL: nil), instructions: "", ingredients: [])
         
-        XCTAssertNil(observerMock.addedRecipe)
-        
         service.remove(recipe: recipe)
-        
         XCTAssertNotNil(observerMock.removedRecipe)
     }
     
-    func testWhenFavoriteIsAddedItMarkedCorrectly() {
+    func testWhenFavoriteIsAddedShouldBeMarkedCorrectly() {
         let recipe = Recipe(preview: RecipePreview(id: "1", title: "", imageURL: nil), instructions: "", ingredients: [])
         
         service.add(recipe: recipe)
-        
         XCTAssertTrue(service.isAddedToFavorite(recipeId: recipe.id))
     }
     
-    func testWhenFavoriteIsRemovedItMarkedCorrectly() {
+    func testWhenFavoriteIsRemovedShouldBeMarkedCorrectly() {
         let recipe = Recipe(preview: RecipePreview(id: "1", title: "", imageURL: nil), instructions: "", ingredients: [])
         
         service.add(recipe: recipe)
         service.remove(recipe: recipe)
-        
         XCTAssertFalse(service.isAddedToFavorite(recipeId: recipe.id))
     }
     

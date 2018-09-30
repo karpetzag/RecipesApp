@@ -31,43 +31,43 @@ class RecipesListPresenterTest: XCTestCase {
         presenter.setup(withCategory: category)
     }
   
-    func testAfterViewIsReadyStartObserveFavoriteStatusChange() {
+    func testWhenViewIsReadyShouldStartObserveFavoriteStatusChange() {
         presenter.viewIsReady()
         XCTAssertTrue(mockInteractor.isStartObserveCalled)
     }
     
-    func testAfterRecipeAddedToFavoritesViewIsUpdated() {
+    func testWhenRecipeIsAddedToFavoritesShouldUpdateView() {
         presenter.didAddRecipeToFavorites(recipe: addRecipesToPresenter().first!)
 
         XCTAssertNotNil(mockView.updatedIndex)
         XCTAssertNotNil(mockView.updatedViewModel)
     }
     
-    func testAfterRecipeRemovedFromFavoritesViewIsUpdated() {
+    func testWhenRecipeIsRemovedFromFavoritesShouldUpdateView() {
         presenter.didRemoveRecipeFromFavorites(recipe: addRecipesToPresenter().first!)
         
         XCTAssertNotNil(mockView.updatedIndex)
         XCTAssertNotNil(mockView.updatedViewModel)
     }
     
-    func testIfRecipeIsAddedToFavoritesViewModelsHaveCorrectStatus() {
+    func testWhenRecipeIsAddedToFavoritesViewModelsShouldHaveCorrectStatus() {
         mockInteractor.isFavorite = true
         let recipes = addRecipesToPresenter()
         
         XCTAssertEqual(mockView.viewModels!.filter({ $0.isFavorite }).count, recipes.count)
     }
     
-    func testWhenViewIsReadyStartLoadData() {
+    func testWhenViewIsReadyShouldStartLoadData() {
         presenter.viewIsReady()
         XCTAssertTrue(mockInteractor.loadRecipesIsCalled)
     }
     
-    func testOnViewRefreshReloadRecipes() {
+    func testOnViewRefreshShouldReloadRecipes() {
         presenter.onViewRefesh()
         XCTAssertTrue(mockInteractor.loadRecipesIsCalled)
     }
     
-    func testAfterUserSelectsRecipeShowDetails() {
+    func testWhenUserSelectsRecipeShouldShowDetails() {
         let interactor = InteractorFetchResult(requestResult: .success(RecipePreview.testPreviews(count: 10)), cachedContent: nil)
         presenter.didFinishLoadAllRecipes(result: interactor)
         presenter.didSelectRecipe(atIndex: 0)

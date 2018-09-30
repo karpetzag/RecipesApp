@@ -22,8 +22,8 @@ class CategoriesListRouterTests: XCTestCase {
         router.navigator = mockNavigator
     }
 
-    func testWhenShowsRecipesListRouterSetupModule() {
-        let category = RecipesApp.Category.testCategories(count: 1).first!
+    func testWhenShowRecipesListShouldSetupModule() {
+        let category = RecipesApp.Category.testCategory()
         router.showRecipes(forCategory: category)
         let mockInput = MockRecipesListModuleInput()
         mockNavigator.setupHandler?(mockInput)

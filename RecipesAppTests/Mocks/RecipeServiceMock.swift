@@ -13,27 +13,32 @@ class RecipesServiceMock: RecipesService {
    
     var categoriesResult: DataResult<[RecipesApp.Category]>?
     var previewResult: DataResult<[RecipePreview]>?
-    
-    var loadCategoriesDidCall = false
-    var loadRecipesDidCall = false
-    
+    var recipeResult: DataResult<Recipe>?
+
+    var isLoadCategoriesCalled = false
+    var isLoadRecipesCalled = false
+    var isLoadRecipeCalled = false
+
     func loadCategories(withCompletion completion: @escaping (DataResult<[RecipesApp.Category]>) -> ()) {
-        loadCategoriesDidCall = true
+        isLoadCategoriesCalled = true
         if let result = categoriesResult {
             completion(result)
         }
         
     }
   
-    func loadRecipePreivews(forCategory category: RecipesApp.Category, completion: @escaping (DataResult<[RecipePreview]>) -> ()) {
-        loadRecipesDidCall = true
+    func loadRecipePreviews(forCategory category: RecipesApp.Category, completion: @escaping (DataResult<[RecipePreview]>) -> ()) {
+        isLoadRecipesCalled = true
         if let result = previewResult {
             completion(result)
         }
     }
     
     func loadRecipe(withId id: String, completion: @escaping (DataResult<Recipe>) -> ()) {
-        
+        isLoadRecipeCalled = true
+        if let result = recipeResult {
+            completion(result)
+        }
     }
     
 }

@@ -10,5 +10,5 @@ import Foundation
 
 protocol RecipeDetailsInteractorOutput: class {
 
-    func didFinishLoadAllRecipes(result: InteractorFetchResult<Recipe>, isAddedToFavorites: Bool)
+    func didFinishLoadRecipe(result: InteractorFetchResult<Recipe>, isAddedToFavorites: Bool)
 }

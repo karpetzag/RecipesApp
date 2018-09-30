@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 @testable import RecipesApp
 
 extension RecipesApp.Category {
@@ -18,6 +20,7 @@ extension RecipesApp.Category {
     static func testCategories(count: Int) -> [RecipesApp.Category] {
         return (0..<count).map({ RecipesApp.Category(id: "\($0)", title: "", imageURL: nil, description: "") })
     }
+    
 }
 
 extension RecipePreview {
@@ -30,9 +33,31 @@ extension RecipePreview {
 
 extension Recipe {
     
-    static func testRecipes(count: Int) -> [Recipe] {
-        return (0..<count).map({ Recipe(preview: RecipePreview(id: "\($0)", title: "", imageURL: nil),
-                                        instructions: "",
-                                        ingredients: []) })
+    static func testRecipe(title: String = "", imageURL: URL? = nil, instructions: String = "", ingredients: [RecipesIngredient] = []) -> Recipe {
+        return Recipe(preview: RecipePreview(id: "123", title: title, imageURL: imageURL),
+                      instructions: instructions,
+                      ingredients: ingredients)
+    }
+}
+
+class TestApiResultsProvider {
+    
+    static func testSuccessCategoriesApiResult() -> ApiResult {
+        return testSuccessApiResult(filename: "TestCategories")
+    }
+    
+    static func testSuccessPreviewsApiResult() -> ApiResult {
+        return testSuccessApiResult(filename: "TestPreviews")
+    }
+    
+    static func testSuccessRecipeApiResult() -> ApiResult {
+        return testSuccessApiResult(filename: "TestRecipe")
+    }
+    
+    private static func testSuccessApiResult(filename: String) -> ApiResult {
+        let bundle = Bundle(for: self)
+        let json = bundle.path(forResource: filename, ofType: "json")!
+        let data = try! String(contentsOfFile: json)
+        return ApiResult.success(ApiSuccessResponse(originData: data, json: JSON(parseJSON: data)))
     }
 }

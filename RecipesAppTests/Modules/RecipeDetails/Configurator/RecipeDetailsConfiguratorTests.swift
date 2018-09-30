@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import RecipesApp
 
 class RecipeDetailsModuleConfiguratorTests: XCTestCase {
 
@@ -43,11 +44,6 @@ class RecipeDetailsModuleConfiguratorTests: XCTestCase {
     }
 
     class RecipeDetailsViewControllerMock: RecipeDetailsViewController {
-
-        var setupInitialStateDidCall = false
-
-        override func setupInitialState() {
-            setupInitialStateDidCall = true
-        }
+ 
     }
 }

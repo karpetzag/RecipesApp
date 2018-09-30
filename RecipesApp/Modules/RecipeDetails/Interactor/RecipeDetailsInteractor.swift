@@ -34,7 +34,7 @@ class RecipeDetailsInteractor: RecipeDetailsInteractorInput {
             }
             
             let interactorResult = InteractorFetchResult(requestResult: result, cachedContent: cachedRecipe)
-            self.output.didFinishLoadAllRecipes(result: interactorResult,
+            self.output.didFinishLoadRecipe(result: interactorResult,
                                                 isAddedToFavorites: self.favoriteRecipesService.isAddedToFavorite(recipeId: id))
         }
     }

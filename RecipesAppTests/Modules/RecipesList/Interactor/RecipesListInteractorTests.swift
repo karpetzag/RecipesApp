@@ -29,21 +29,21 @@ class RecipesListInteractorTests: XCTestCase {
         interactor.output = mockPresenter
     }
 
-    func testWhenRecipeIsAddedToFavotitesNotifyPresenter()  {
-        let recipe = Recipe.testRecipes(count: 1).first!
+    func testWhenRecipeIsAddedToFavotitesShouldNotifyPresenter()  {
+        let recipe = Recipe.testRecipe()
         interactor.startObserveFavoriteStatusChange()
         interactor.didAddToFavorites(recipe: recipe)
         XCTAssertTrue(mockPresenter.didAddRecipeToFavoritesCalled)
     }
     
-    func testWhenRecipeIsRemovedToFavotitesNotifyPresenter()  {
-        let recipe = Recipe.testRecipes(count: 1).first!
+    func testWhenRecipeIsRemovedToFavotitesShouldNotifyPresenter()  {
+        let recipe = Recipe.testRecipe()
         interactor.startObserveFavoriteStatusChange()
         interactor.didRemoveFromFavorites(recipe: recipe)
         XCTAssertTrue(mockPresenter.didRemoveRecipeFromFavorites)
     }
     
-    func testAfterFailedResultLoadCachedData() {
+    func testWhenLoadIsFailedShouldUseCachedData() {
         let category = RecipesApp.Category.testCategory()
         mockRecipesService.previewResult = .failure(ApiInternalError.unknown)
         let previews = RecipePreview.testPreviews(count: 10)
@@ -54,7 +54,7 @@ class RecipesListInteractorTests: XCTestCase {
         XCTAssertEqual(mockPresenter.result.cachedContent!, previews)
     }
     
-    func testAfterSuccessResponseUseDataFromService() {
+    func testWhenLoadIsSucceededShouldUseDataFromService() {
         let category = RecipesApp.Category.testCategory()
         let previews = RecipePreview.testPreviews(count: 10)
         mockRecipesService.previewResult = .success(previews)
@@ -63,7 +63,7 @@ class RecipesListInteractorTests: XCTestCase {
         XCTAssertEqual(mockPresenter.result.resultItem!, previews)
     }
 
-    func testAfterSuccessResponseUpdateDataInCache() {
+    func testWhenLoadIsSucceededShouldUpdateDataInCache() {
         let category = RecipesApp.Category.testCategory()
         let previews = RecipePreview.testPreviews(count: 10)
         mockRecipesService.previewResult = .success(previews)

@@ -57,16 +57,22 @@ class DefaultFavoriteRecipesService: FavoriteRecipesService {
         }
     
         fileCache.add(content: json, filename: "\(recipe.id)", subdirectoryName: DefaultFavoriteRecipesService.dirName)
+        removeEmptyObservers()
         observers.forEach({ $0.favoriteStatusObserver?.didAddToFavorites(recipe: recipe) })
     }
     
     func remove(recipe: Recipe) {
         fileCache.remove(name: filepath(forRecipeId: recipe.id))
+        removeEmptyObservers()
         observers.forEach({ $0.favoriteStatusObserver?.didRemoveFromFavorites(recipe: recipe) })
     }
     
     func isAddedToFavorite(recipeId: String) -> Bool {
         return fileCache.isFileExist(name: filepath(forRecipeId: recipeId)) 
+    }
+    
+    private func removeEmptyObservers() {
+        observers = observers.filter({ $0.favoriteStatusObserver != nil })
     }
     
     private func filepath(forRecipeId recipeId: String) -> String {

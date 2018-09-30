@@ -24,7 +24,7 @@ class CategoriesListInteractorTests: XCTestCase {
         interactor.output = output
     }
     
-    func testUsesLocalStorageIfGetErrorFromService() {
+    func testWhenGetErrorShouldUseLocalStorage() {
         recipesServiceMock.categoriesResult = .failure(ApiInternalError.unknown)
         let categories = RecipesApp.Category.testCategories(count: 10)
         storageMock.categoriesToReturn = categories
@@ -36,7 +36,7 @@ class CategoriesListInteractorTests: XCTestCase {
         XCTAssertTrue(cachedResults == categories)
     }
 
-    func testAfterSuccessResponseUseDataFromService() {
+    func testWhenGetSuccessResponseShouldUseDataFromService() {
         let categories = RecipesApp.Category.testCategories(count: 10)
         recipesServiceMock.categoriesResult = .success(categories)
         interactor.loadCategories()
@@ -44,7 +44,7 @@ class CategoriesListInteractorTests: XCTestCase {
         XCTAssertEqual(output.result.requestResult.resultItem, categories)
     }
     
-    func testAfterSuccessResponseUpdateDataInCache() {
+    func testWhenGetSuccessResponseShouldUpdateDataInCache() {
         let categories = RecipesApp.Category.testCategories(count: 10)
         recipesServiceMock.categoriesResult = .success(categories)
         interactor.loadCategories()

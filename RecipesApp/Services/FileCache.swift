@@ -17,8 +17,10 @@ protocol FileCache {
     func remove(name: String)
     
     func add(content: Data, filename: String, subdirectoryName: String?)
-        
-    func contentsOfDirectory(name: String) -> [String]
+    
+    func content(filename: String, subdirectoryName: String?) -> Data?
+    
+    func filenamesInDirectory(name: String) -> [String]
 }
 
 class DefaultFileCache: FileCache {
@@ -41,21 +43,33 @@ class DefaultFileCache: FileCache {
     }
     
     func add(content: Data, filename: String, subdirectoryName: String?) {
-        var fullName: String
         if let subdirectoryName = subdirectoryName {
             addSubDirIfNeeded(name: subdirectoryName)
-            fullName = subdirectoryName + "/" + filename
-        } else {
-            fullName = filename
         }
         
-        let url = pathForFile(withName: fullName)
+        let url = pathForFile(withName: fullPath(forFilename: filename, subdirectoryName: subdirectoryName))
         try? content.write(to: url)
     }
     
-    func contentsOfDirectory(name: String) -> [String] {
+    func filenamesInDirectory(name: String) -> [String] {
         let url = pathForFile(withName: name)
         return (try? FileManager.default.contentsOfDirectory(atPath: url.path)) ?? []
+    }
+    
+    func content(filename: String, subdirectoryName: String?) -> Data? {
+        let url = pathForFile(withName: fullPath(forFilename: filename, subdirectoryName: subdirectoryName))
+        return try? Data(contentsOf: url)
+    }
+    
+    private func fullPath(forFilename filename: String, subdirectoryName: String?) -> String {
+        var fullpath: String
+        if let subdirectoryName = subdirectoryName {
+            fullpath = subdirectoryName + "/" + filename
+        } else {
+            fullpath = filename
+        }
+        
+        return fullpath
     }
     
     private func addSubDirIfNeeded(name: String) {
