@@ -58,6 +58,6 @@ class TestApiResultsProvider {
         let bundle = Bundle(for: self)
         let json = bundle.path(forResource: filename, ofType: "json")!
         let data = try! String(contentsOfFile: json)
-        return ApiResult.success(ApiSuccessResponse(originData: data, json: JSON(parseJSON: data)))
+        return ApiResult.success(ApiSuccessResponse(originalData: data, json: JSON(parseJSON: data)))
     }
 }

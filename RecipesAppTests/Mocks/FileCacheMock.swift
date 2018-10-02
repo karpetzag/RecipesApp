@@ -22,10 +22,6 @@ class FileCacheMock: FileCache {
         return isFileExist
     }
     
-    func pathForFile(withName name: String) -> URL {
-        return pathToReturn
-    }
-    
     func remove(name: String) {
         isRemoveCalled = true
     }

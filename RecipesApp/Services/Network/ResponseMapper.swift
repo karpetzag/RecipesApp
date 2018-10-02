@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DataResult<T> {
+enum Result<T> {
     case success(T)
     case failure(Error)
     
@@ -29,7 +29,7 @@ enum DataResult<T> {
     }
 }
 
-typealias ResultHandler<T> = (DataResult<T>) -> ()
+typealias ResultHandler<T> = (Result<T>) -> ()
 
 protocol ResponseMapper {
     
@@ -41,7 +41,7 @@ class DefaultResponseMapper: ResponseMapper {
     func mapObjectsFromApiResult<T>(result: ApiResult,
                                     toItemsWithType type: T.Type,
                                     dataKey: String,
-                                    completion: @escaping (DataResult<[T]>) -> ()) where T : Mappable {
+                                    completion: @escaping (Result<[T]>) -> ()) where T : Mappable {
         switch result {
         case .success(let response):
             guard let items = response.json[dataKey].array else {

@@ -10,9 +10,7 @@ import Foundation
 
 protocol FileCache {
     
-    func isFileExist(name: String) -> Bool
-    
-    func pathForFile(withName name: String) -> URL
+    func isFileExist(name: String) -> Bool    
     
     func remove(name: String)
     
@@ -30,13 +28,6 @@ class DefaultFileCache: FileCache {
         return FileManager.default.fileExists(atPath: path.path)
     }
     
-    func pathForFile(withName name: String) -> URL {
-        let cacheURL = rootDir()
-        let result = cacheURL.appendingPathComponent(name)
-        
-        return result
-    }
- 
     func remove(name: String) {
         let url = pathForFile(withName: name)
         try? FileManager.default.removeItem(at: url)
@@ -59,6 +50,13 @@ class DefaultFileCache: FileCache {
     func content(filename: String, subdirectoryName: String?) -> Data? {
         let url = pathForFile(withName: fullPath(forFilename: filename, subdirectoryName: subdirectoryName))
         return try? Data(contentsOf: url)
+    }
+    
+    private func pathForFile(withName name: String) -> URL {
+        let cacheURL = rootDir()
+        let result = cacheURL.appendingPathComponent(name)
+        
+        return result
     }
     
     private func fullPath(forFilename filename: String, subdirectoryName: String?) -> String {

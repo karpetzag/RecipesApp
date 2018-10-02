@@ -9,7 +9,7 @@
 import Foundation
 
 struct InteractorFetchResult<T> {
-    let requestResult: DataResult<T>
+    let requestResult: Result<T>
     let cachedContent: T?
     
     var resultItem: T? {

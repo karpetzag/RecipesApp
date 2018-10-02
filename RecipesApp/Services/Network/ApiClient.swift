@@ -12,7 +12,7 @@ import Alamofire
 
 typealias JsonReponse = JSON
 
-typealias RequestParamters = [String: Any]
+typealias RequestParameters = [String: Any]
 
 typealias RequestCompletionHandler = (ApiResult) -> ()
 
@@ -27,7 +27,7 @@ enum ApiInternalError: Int, Error {
 }
 
 struct ApiSuccessResponse {
-    let originData: Any
+    let originalData: Any
     let json: JsonReponse
 }
  
@@ -38,7 +38,7 @@ enum ApiResult {
 
 struct ApiRequest {
     let httpMethod: HttpMethod
-    let params: RequestParamters?
+    let params: RequestParameters?
     let methodName: String
 }
 
@@ -46,7 +46,7 @@ extension ApiRequest {
     
     init(httpMethod: HttpMethod,
          methodName: String,
-         params: RequestParamters? = nil) {
+         params: RequestParameters? = nil) {
         self.httpMethod = httpMethod
         self.methodName = methodName
         self.params = params
@@ -87,7 +87,7 @@ class DefaultApiClient: ApiClient {
                     switch response.result {
                     case .success(let val):
                         let json = JSON(val)
-                        let result = ApiSuccessResponse(originData: val, json: json)
+                        let result = ApiSuccessResponse(originalData: val, json: json)
                         handler(.success(result))
                     case .failure(let e):
                         handler(.failure(e))

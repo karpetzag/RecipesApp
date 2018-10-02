@@ -10,11 +10,11 @@ import Foundation
 
 protocol RecipesService {
     
-    func loadCategories(withCompletion completion: @escaping (DataResult<[Category]>)->())
+    func loadCategories(withCompletion completion: @escaping (Result<[Category]>)->())
     
-    func loadRecipePreviews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->())
+    func loadRecipePreviews(forCategory category: Category, completion: @escaping (Result<[RecipePreview]>)->())
     
-    func loadRecipe(withId id: String, completion: @escaping (DataResult<Recipe>)->())
+    func loadRecipe(withId id: String, completion: @escaping (Result<Recipe>)->())
 }
 
 class DefaultRecipesService: RecipesService {
@@ -27,7 +27,7 @@ class DefaultRecipesService: RecipesService {
         self.mapper = mapper
     }
     
-    func loadCategories(withCompletion completion: @escaping (DataResult<[Category]>) -> ()) {
+    func loadCategories(withCompletion completion: @escaping (Result<[Category]>) -> ()) {
         let request = ApiRequest(httpMethod: .get, methodName: "categories.php")
         apiClient.send(request: request) { [weak self] (result) in
             self?.mapper.mapObjectsFromApiResult(result: result,
@@ -36,7 +36,7 @@ class DefaultRecipesService: RecipesService {
         }
     }
     
-    func loadRecipePreviews(forCategory category: Category, completion: @escaping (DataResult<[RecipePreview]>)->()) {
+    func loadRecipePreviews(forCategory category: Category, completion: @escaping (Result<[RecipePreview]>)->()) {
         let params = ["c": category.title]
         let request = ApiRequest(httpMethod: .get, methodName: "filter.php", params: params)
         apiClient.send(request: request) { [weak self] (result) in
@@ -44,7 +44,7 @@ class DefaultRecipesService: RecipesService {
         }
     }
     
-    func loadRecipe(withId id: String, completion: @escaping (DataResult<Recipe>) -> ()) {
+    func loadRecipe(withId id: String, completion: @escaping (Result<Recipe>) -> ()) {
         let params = ["i": id]
         let request = ApiRequest(httpMethod: .get, methodName: "lookup.php", params: params)
         apiClient.send(request: request) { [weak self] (result) in

@@ -580,6 +580,7 @@
 		9F6407522145226900EB317C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9FFA06F6214037CB0079826E /* Network */,
 				9F6407532145227C00EB317C /* RecipesService.swift */,
 				9F5FD44F214AC35500356B55 /* FileCache.swift */,
 				9F6407562145283800EB317C /* Cache.swift */,
@@ -624,7 +625,6 @@
 			children = (
 				9F64075E21454AD200EB317C /* R.generated.swift */,
 				9F6407522145226900EB317C /* Services */,
-				9FFA06F6214037CB0079826E /* Network */,
 				545FF0A117F590A7A11914B6 /* Modules */,
 				9F8A51A22140207D005285DD /* AppDelegate.swift */,
 				9F8A51A62140207D005285DD /* Main.storyboard */,

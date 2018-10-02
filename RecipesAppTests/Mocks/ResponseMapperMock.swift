@@ -18,7 +18,7 @@ class MockResponseMapper: ResponseMapper {
     func mapObjectsFromApiResult<T>(result: ApiResult,
                                     toItemsWithType type: T.Type,
                                     dataKey: String,
-                                    completion: @escaping (DataResult<[T]>) -> ()) where T : Mappable {
+                                    completion: @escaping (Result<[T]>) -> ()) where T : Mappable {
         self.dataKey = dataKey
         self.type = type
         self.dataKey = dataKey
