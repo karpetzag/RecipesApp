@@ -12,6 +12,6 @@ protocol CategoriesListViewOutput {
     
     func didSelectCategory(atIndex index: Int)
     
-    func onViewRefesh()
+    func onViewRefresh()
 
 }

@@ -34,8 +34,8 @@ class CategoryCollectionViewCell: UICollectionViewCell, ViewModelUpdatable {
         contentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func set(widht: CGFloat) {
-        widthConstraint.constant = widht
+    func set(width: CGFloat) {
+        widthConstraint.constant = width
         setNeedsLayout()
     }
 }

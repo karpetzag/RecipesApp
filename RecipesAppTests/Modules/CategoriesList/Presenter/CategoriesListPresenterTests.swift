@@ -29,7 +29,7 @@ class CategoriesListPresenterTest: XCTestCase {
     }
 
     func testOnViewRefreshShouldLoadCategories() {
-        presenter.onViewRefesh()
+        presenter.onViewRefresh()
         XCTAssertTrue(mockInteractor.loadIsCalled)
     }
     

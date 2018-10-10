@@ -45,7 +45,7 @@ class CategoriesListViewController: UIViewController, CategoriesListViewInput {
     
     @objc
     private func pullRefreshHandler() {
-        output.onViewRefesh()
+        output.onViewRefresh()
     }
 }
 
@@ -68,7 +68,7 @@ extension CategoriesListViewController: UICollectionViewDataSource {
         }
         
         let vm = cellViewModels[indexPath.row]
-        cell.set(widht: cellWidth())
+        cell.set(width: cellWidth())
         cell.update(withViewModel: vm)
         return cell
     }

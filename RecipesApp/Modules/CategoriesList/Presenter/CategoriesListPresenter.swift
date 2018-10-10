@@ -24,7 +24,7 @@ class CategoriesListPresenter: CategoriesListModuleInput, CategoriesListViewOutp
         router.showRecipes(forCategory: category)
     }
     
-    func onViewRefesh() {
+    func onViewRefresh() {
         interactor.loadCategories()
     }
 
